@@ -1,0 +1,20 @@
+{
+  "name": "conneskills",
+  "interface": {
+    "displayName": "Conneskills"
+  },
+  "plugins": [
+    {
+      "name": "conneskills",
+      "source": {
+        "source": "local",
+        "path": "./plugins/conneskills"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "name": "conneskills",
+  "version": "1.0.0",
+  "description": "Governed company knowledge, code intelligence, memory, and planning for Codex.",
+  "author": {
+    "name": "Conneskills",
+    "url": "https://conneskills.com"
+  },
+  "homepage": "https://conneskills.com",
+  "repository": "https://github.com/conneskills/codex-plugin",
+  "license": "UNLICENSED",
+  "keywords": ["mcp", "knowledge-base", "code-intelligence", "memory", "planning"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Conneskills",
+    "shortDescription": "Governed context and engineering intelligence.",
+    "longDescription": "Connect Codex to Conneskills KBS, Code, Memory, and Planning through four independently authorized MCP resources.",
+    "developerName": "Conneskills",
+    "category": "Productivity",
+    "capabilities": ["Knowledge search", "Code intelligence", "Memory", "Planning"],
+    "websiteURL": "https://conneskills.com",
+    "defaultPrompt": [
+      "Search our knowledge bases for the answer.",
+      "Explain this codebase using its indexed graph.",
+      "Load the relevant memory and implementation plan."
+    ]
+  },
+  "mcpServers": "./.mcp.json"
+}
