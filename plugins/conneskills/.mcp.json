@@ -2,19 +2,32 @@
   "mcpServers": {
     "conneskills-kbs": {
       "type": "http",
-      "url": "https://app.conneskills.com/api/mcp/kbs"
+      "url": "https://app.conneskills.com/api/mcp/kbs",
+      "scopes": ["connectors:read", "kb:query"]
     },
     "conneskills-code": {
       "type": "http",
-      "url": "https://app.conneskills.com/api/mcp/code"
+      "url": "https://app.conneskills.com/api/mcp/code",
+      "scopes": ["code:read", "code:index", "code:episodes"]
     },
     "conneskills-memory": {
       "type": "http",
-      "url": "https://app.conneskills.com/api/mcp/memory"
+      "url": "https://app.conneskills.com/api/mcp/memory",
+      "scopes": [
+        "memory:read",
+        "memory:write",
+        "memory:consolidate",
+        "memory:intentions"
+      ]
     },
     "conneskills-planning": {
       "type": "http",
-      "url": "https://app.conneskills.com/api/mcp/planning"
+      "url": "https://app.conneskills.com/api/mcp/planning",
+      "scopes": [
+        "planning:read",
+        "planning:write",
+        "planning:governance"
+      ]
     }
   }
 }

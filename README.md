@@ -25,7 +25,8 @@ autorización cuando conecte cada recurso.
 | Conneskills Planning | `https://app.conneskills.com/api/mcp/planning` | Planes y gobernanza |
 
 Los permisos seguros por defecto no incluyen escritura de código, borrado de
-memoria ni gestión de ADRs.
+memoria ni gestión de ADRs. El plugin fija explícitamente los scopes OAuth
+mínimos por recurso para que Codex no solicite el catálogo completo del issuer.
 
 ## Uso
 
