@@ -20,9 +20,9 @@ autorización cuando conecte cada recurso.
 | Recurso | URL | Uso |
 |---|---|---|
 | Conneskills KBS | `https://app.conneskills.com/api/mcp/kbs` | KBs y conectores gobernados |
-| Conneskills Code | `https://app.conneskills.com/api/mcp/code` | Índice y grafo de código |
-| Conneskills Memory | `https://app.conneskills.com/api/mcp/memory` | Memoria e intenciones |
-| Conneskills Planning | `https://app.conneskills.com/api/mcp/planning` | Planes y gobernanza |
+| Conneskills Code | `https://app.conneskills.com/api/mcp/brain/code` | Índice y grafo de código |
+| Conneskills Memory | `https://app.conneskills.com/api/mcp/brain/memory` | Memoria e intenciones |
+| Conneskills Planning | `https://app.conneskills.com/api/mcp/brain/planning` | Planes y gobernanza |
 
 Los permisos seguros por defecto no incluyen escritura de código, borrado de
 memoria ni gestión de ADRs. El plugin fija explícitamente los scopes OAuth
