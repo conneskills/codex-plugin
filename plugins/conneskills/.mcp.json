@@ -7,12 +7,12 @@
     },
     "conneskills-code": {
       "type": "http",
-      "url": "https://app.conneskills.com/api/mcp/code",
+      "url": "https://app.conneskills.com/api/mcp/brain/code",
       "scopes": ["code:read", "code:index", "code:episodes"]
     },
     "conneskills-memory": {
       "type": "http",
-      "url": "https://app.conneskills.com/api/mcp/memory",
+      "url": "https://app.conneskills.com/api/mcp/brain/memory",
       "scopes": [
         "memory:read",
         "memory:write",
@@ -22,7 +22,7 @@
     },
     "conneskills-planning": {
       "type": "http",
-      "url": "https://app.conneskills.com/api/mcp/planning",
+      "url": "https://app.conneskills.com/api/mcp/brain/planning",
       "scopes": [
         "planning:read",
         "planning:write",
