@@ -1,7 +1,7 @@
 {
   "name": "conneskills",
-  "version": "1.0.2",
-  "description": "Governed company knowledge, code intelligence, memory, and planning for Codex.",
+  "version": "2.0.0",
+  "description": "Governed company knowledge, live connector data, code intelligence, memory, and planning for Codex.",
   "author": {
     "name": "Conneskills",
     "url": "https://conneskills.com"
@@ -9,18 +9,33 @@
   "homepage": "https://conneskills.com",
   "repository": "https://github.com/conneskills/codex-plugin",
   "license": "UNLICENSED",
-  "keywords": ["mcp", "knowledge-base", "code-intelligence", "memory", "planning"],
+  "keywords": [
+    "mcp",
+    "knowledge-base",
+    "connectors",
+    "code-intelligence",
+    "memory",
+    "planning"
+  ],
   "skills": "./skills/",
   "interface": {
     "displayName": "Conneskills",
-    "shortDescription": "Governed context and engineering intelligence.",
-    "longDescription": "Connect Codex to Conneskills KBS, Code, Memory, and Planning through four independently authorized MCP resources.",
+    "shortDescription": "Governed knowledge and live company data.",
+    "longDescription": "Connect Codex to Conneskills Knowledge, Connectors, Code, Memory, and Planning through five independently authorized MCP resources.",
     "developerName": "Conneskills",
     "category": "Productivity",
-    "capabilities": ["Knowledge search", "Code intelligence", "Memory", "Planning"],
+    "capabilities": [
+      "Knowledge search",
+      "Indexed database schema",
+      "Live connector data",
+      "Code intelligence",
+      "Memory",
+      "Planning"
+    ],
     "websiteURL": "https://conneskills.com",
     "defaultPrompt": [
-      "Search our knowledge bases for the answer.",
+      "Search our knowledge bases and inspect indexed database structure.",
+      "Read a current value from an authorized live connection.",
       "Explain this codebase using its indexed graph.",
       "Load the relevant memory and implementation plan."
     ]

@@ -1,9 +1,9 @@
-# Conneskills plugin for Codex
+# Conneskills — plugin para Codex
 
-Conecta Codex con cuatro superficies gobernadas de Conneskills:
-**Conneskills KBS**, **Conneskills Code**, **Conneskills Memory** y
-**Conneskills Planning**. Cada una usa su propio recurso MCP y consentimiento
-OAuth.
+Conecta Codex con cinco superficies gobernadas de Conneskills: **Knowledge**,
+**Connectors**, **Code**, **Memory** y **Planning**. Cada una usa un recurso MCP
+independiente y scopes OAuth explícitos, así que el agente no necesita mezclar
+recuperación indexada con consultas a sistemas vivos.
 
 ## Instalación
 
@@ -12,34 +12,52 @@ codex plugin marketplace add conneskills/codex-plugin
 codex plugin add conneskills@conneskills
 ```
 
-Reinicia o abre una conversación nueva después de instalar. Codex solicitará
-autorización cuando conecte cada recurso.
+Reinicia Codex o abre una conversación nueva después de instalar. Autoriza cada
+recurso cuando Codex lo solicite.
 
 ## Recursos incluidos
 
-| Recurso | URL | Uso |
-|---|---|---|
-| Conneskills KBS | `https://app.conneskills.com/api/mcp/kbs` | KBs y conectores gobernados |
-| Conneskills Code | `https://app.conneskills.com/api/mcp/brain/code` | Índice y grafo de código |
-| Conneskills Memory | `https://app.conneskills.com/api/mcp/brain/memory` | Memoria e intenciones |
-| Conneskills Planning | `https://app.conneskills.com/api/mcp/brain/planning` | Planes y gobernanza |
+| Servidor | URL | Scope solicitado | Para qué |
+|---|---|---|---|
+| `conneskills-knowledge` | `https://app.conneskills.com/api/mcp/knowledge` | `kb:query` | Conocimiento indexado y esquema DB determinista, con citas |
+| `conneskills-connectors` | `https://app.conneskills.com/api/mcp/connectors` | `connectors:read` | Valores vivos de las conexiones autorizadas |
+| `conneskills-code` | `https://app.conneskills.com/api/mcp/code` | `code:read`, `code:index`, `code:episodes` | Grafo de código, impacto e indexación |
+| `conneskills-memory` | `https://app.conneskills.com/api/mcp/memory` | memoria e intenciones | Contexto duradero gobernado |
+| `conneskills-planning` | `https://app.conneskills.com/api/mcp/planning` | planificación y gobernanza | Planes, evidencia y gates |
 
-Los permisos seguros por defecto no incluyen escritura de código, borrado de
-memoria ni gestión de ADRs. El plugin fija explícitamente los scopes OAuth
-mínimos por recurso para que Codex no solicite el catálogo completo del issuer.
+Los permisos opcionales de escritura de código, borrado o promoción de memoria
+y gestión de ADRs no se solicitan. La disponibilidad final de cada tool también
+depende del Access Group del workspace.
 
-## Uso
+## Knowledge o Connectors
 
-- “Busca en nuestras KBs qué dice el procedimiento de compras.”
-- “Explica la arquitectura del repositorio indexado y traza esta función.”
-- “Recupera la memoria relevante antes de continuar.”
-- “Consulta el plan activo y comprueba sus gates de gobernanza.”
+- **Knowledge** responde qué sabemos y cómo está estructurada una base de datos
+  indexada. `database_list_schemas`, `database_list_tables` y
+  `database_describe_table` leen exclusivamente el último snapshot; devuelven
+  columnas, claves, relaciones, índices, tamaños, riesgo y warnings sin abrir
+  una conexión viva.
+- **Connectors** responde cuál es el valor actual. Para bases de datos expone
+  discovery, count, select y aggregate. Cada llamada llega a la fuente, añade
+  carga y consume presupuesto del workspace.
 
-Para preguntas sobre datos, la skill de KBS busca primero en la información
-indexada. Sólo usa el conector en vivo cuando se necesitan valores actuales o
-una consulta estructurada que el índice no puede resolver.
+El orden recomendado es Knowledge para resolver estructura y riesgos, y
+Connectors solo cuando la respuesta exige filas o agregados actuales. Los scopes
+separados hacen que Knowledge no anuncie herramientas vivas por accidente.
+
+## Compatibilidad con 1.x
+
+La 2.0 renombra `conneskills-kbs` a `conneskills-knowledge`, añade
+`conneskills-connectors` y usa las cinco URIs canónicas. Las instalaciones 1.x
+siguen funcionando con aliases deprecados hasta el **2027-08-20**, pero al
+actualizar hay que volver a autorizar porque el cliente asocia el token con la
+URL del recurso. Consulta [CHANGELOG.md](CHANGELOG.md) para el mapa completo.
 
 ## Desarrollo
 
 El plugin está en `plugins/conneskills` y el catálogo del repositorio en
-`.agents/plugins/marketplace.json`. No requiere build.
+`.agents/plugins/marketplace.json`. No requiere build. Antes de publicar:
+
+```bash
+python3 scripts/validate.py
+python3 ~/.codex/skills/.system/plugin-creator/scripts/validate_plugin.py plugins/conneskills
+```
