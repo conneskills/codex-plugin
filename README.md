@@ -1,9 +1,9 @@
 # Conneskills — plugin para Codex
 
-Conecta Codex con cinco superficies gobernadas de Conneskills: **Knowledge**,
-**Connectors**, **Code**, **Memory** y **Planning**. Cada una usa un recurso MCP
-independiente y scopes OAuth explícitos, así que el agente no necesita mezclar
-recuperación indexada con consultas a sistemas vivos.
+Conecta Codex con seis superficies gobernadas de Conneskills: **Knowledge**,
+**Connectors**, **Code**, **Memory**, **Planning** e **Insights**. Cada una usa
+un recurso MCP independiente y scopes OAuth explícitos, así que el agente no
+necesita mezclar recuperación indexada con consultas a sistemas vivos.
 
 ## Instalación
 
@@ -24,6 +24,7 @@ recurso cuando Codex lo solicite.
 | `conneskills-code` | `https://app.conneskills.com/api/mcp/code` | `code:read`, `code:index`, `code:episodes` | Grafo de código, impacto e indexación |
 | `conneskills-memory` | `https://app.conneskills.com/api/mcp/memory` | memoria e intenciones | Contexto duradero gobernado |
 | `conneskills-planning` | `https://app.conneskills.com/api/mcp/planning` | planificación y gobernanza | Planes, evidencia y gates |
+| `conneskills-insights` | `https://app.conneskills.com/api/mcp/insights` | `insights:read`, `insights:manage`, `insights:outcome` | Radar de señales: riesgos, oportunidades y hallazgos ya calculados |
 
 Los permisos opcionales de escritura de código, borrado o promoción de memoria
 y gestión de ADRs no se solicitan. La disponibilidad final de cada tool también
@@ -43,6 +44,15 @@ depende del Access Group del workspace.
 El orden recomendado es Knowledge para resolver estructura y riesgos, y
 Connectors solo cuando la respuesta exige filas o agregados actuales. Los scopes
 separados hacen que Knowledge no anuncie herramientas vivas por accidente.
+
+## Insights
+
+**Insights** responde *qué necesita una decisión y no estoy viendo*. No consulta
+la base de datos: la plataforma ya corrió playbooks firmados y comparó cada
+entidad con su historia y con sus pares. Empieza siempre por `insights_brief`
+(sin argumentos) y lidera con el dinero en juego. `insights_setup` permite a un
+owner o admin encender la corrida diaria desde el propio servidor cuando
+`run.status` es `not_configured`.
 
 ## Compatibilidad con 1.x
 

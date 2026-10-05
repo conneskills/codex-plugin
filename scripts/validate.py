@@ -12,7 +12,7 @@ PLUGIN_ROOT = ROOT / "plugins" / "conneskills"
 FRONTMATTER = re.compile(r"^---\n(.*?)\n---\n", re.S)
 errors: list[str] = []
 
-EXPECTED_VERSION = "2.0.0"
+EXPECTED_VERSION = "2.1.0"
 EXPECTED_SERVERS = {
     "conneskills-knowledge": {
         "url": "https://app.conneskills.com/api/mcp/knowledge",
@@ -39,6 +39,10 @@ EXPECTED_SERVERS = {
         "url": "https://app.conneskills.com/api/mcp/planning",
         "scopes": ["planning:read", "planning:write", "planning:governance"],
     },
+    "conneskills-insights": {
+        "url": "https://app.conneskills.com/api/mcp/insights",
+        "scopes": ["insights:read", "insights:manage", "insights:outcome"],
+    },
 }
 INDEXED_DATABASE_SCHEMA_TOOLS = {
     "database_list_schemas",
@@ -50,6 +54,17 @@ LIVE_DATABASE_TOOLS = {
     "database_count",
     "database_select",
     "database_aggregate",
+}
+INSIGHTS_TOOLS = {
+    "insights_brief",
+    "insights_explain",
+    "insights_report_outcome",
+    "insights_setup",
+}
+INSIGHTS_SCOPES = {
+    "insights:read",
+    "insights:manage",
+    "insights:outcome",
 }
 
 
@@ -205,6 +220,23 @@ for tool in sorted(INDEXED_DATABASE_SCHEMA_TOOLS):
 for tool in sorted(LIVE_DATABASE_TOOLS):
     if f"| `{tool}` |" not in connectors_reference:
         fail(f"Connectors inventory is missing live database tool {tool}")
+
+insights_reference = read_required_text(
+    skills_root / "conneskills-insights" / "references" / "response-shape.md",
+    "Insights response shape reference",
+)
+insights_skill = read_required_text(
+    skills_root / "conneskills-insights" / "SKILL.md",
+    "Insights skill",
+)
+for tool in sorted(INSIGHTS_TOOLS):
+    if f"| `{tool}` |" not in insights_reference:
+        fail(f"Insights reference is missing tool {tool}")
+for scope in sorted(INSIGHTS_SCOPES):
+    if scope not in insights_reference:
+        fail(f"Insights reference is missing scope {scope}")
+if "insights_setup" not in insights_skill:
+    fail("Insights skill does not document insights_setup")
 
 changelog = read_required_text(ROOT / "CHANGELOG.md", "CHANGELOG.md")
 if f"## {manifest.get('version')}" not in changelog:
