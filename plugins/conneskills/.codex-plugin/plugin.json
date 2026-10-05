@@ -1,7 +1,7 @@
 {
   "name": "conneskills",
-  "version": "2.0.0",
-  "description": "Governed company knowledge, live connector data, code intelligence, memory, and planning for Codex.",
+  "version": "2.1.0",
+  "description": "Governed company knowledge, live connector data, code intelligence, memory, planning, and the signals radar for Codex.",
   "author": {
     "name": "Conneskills",
     "url": "https://conneskills.com"
@@ -15,13 +15,14 @@
     "connectors",
     "code-intelligence",
     "memory",
-    "planning"
+    "planning",
+    "insights"
   ],
   "skills": "./skills/",
   "interface": {
     "displayName": "Conneskills",
     "shortDescription": "Governed knowledge and live company data.",
-    "longDescription": "Connect Codex to Conneskills Knowledge, Connectors, Code, Memory, and Planning through five independently authorized MCP resources.",
+    "longDescription": "Connect Codex to Conneskills Knowledge, Connectors, Code, Memory, Planning, and Insights through six independently authorized MCP resources.",
     "developerName": "Conneskills",
     "category": "Productivity",
     "capabilities": [
@@ -30,14 +31,16 @@
       "Live connector data",
       "Code intelligence",
       "Memory",
-      "Planning"
+      "Planning",
+      "Signals radar"
     ],
     "websiteURL": "https://conneskills.com",
     "defaultPrompt": [
       "Search our knowledge bases and inspect indexed database structure.",
       "Read a current value from an authorized live connection.",
       "Explain this codebase using its indexed graph.",
-      "Load the relevant memory and implementation plan."
+      "Load the relevant memory and implementation plan.",
+      "Read the signals radar of risks and opportunities on our data."
     ]
   },
   "mcpServers": "./.mcp.json"

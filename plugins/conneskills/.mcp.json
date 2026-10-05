@@ -33,6 +33,15 @@
         "planning:write",
         "planning:governance"
       ]
+    },
+    "conneskills-insights": {
+      "type": "http",
+      "url": "https://app.conneskills.com/api/mcp/insights",
+      "scopes": [
+        "insights:read",
+        "insights:manage",
+        "insights:outcome"
+      ]
     }
   }
 }
